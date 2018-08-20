@@ -20,7 +20,7 @@ COPY rootfs /
 COPY homefs ${bastion_homedir}/
 RUN chown -R ${bastion_username}:${bastion_username} ${bastion_homedir} \
  && chmod -R u=rwX,og=rX ${bastion_homedir}/.ssh \
- && chmod u=rw,og=r ${bastion_homedir}/.ssh/authorized_keys
+ && chmod u=rw,og=r ${bastion_homedir}/.ssh/authorized_keys || true
 
 ONBUILD COPY homefs ${bastion_homedir}/
 ONBUILD RUN chown -R ${bastion_username}:${bastion_username} ${bastion_homedir} \
