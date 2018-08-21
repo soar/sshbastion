@@ -4,7 +4,7 @@ HOST_KEY_TYPES="dsa ed25519 ecdsa rsa"
 SECRETSDIR=/run/secrets
 HOST_KEYS_DIR=/etc/ssh
 
-for host_key_type in "${HOST_KEY_TYPES}"; do
+for host_key_type in ${HOST_KEY_TYPES}; do
     keyfilename="ssh_host_${host_key_type}_key"
 
     if [ -r "${SECRETSDIR}/${keyfilename}" ]; then
