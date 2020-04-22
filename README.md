@@ -1,5 +1,7 @@
 # SSH Bastion
 
+[![Docker Repository on Quay](https://quay.io/repository/soar/sshbastion/status "Docker Repository on Quay")](https://quay.io/repository/soar/sshbastion)
+
 ## Usage
 
 Some variables will be used here:
@@ -23,7 +25,7 @@ JUMPER_USER=jumper
     `Dockerfile`:
     
     ```Dockerfile
-    FROM soarname/sshbastion
+    FROM quay.io/soar/sshbastion
     ```
     
     `homefs/.ssh/authorized_keys`:
