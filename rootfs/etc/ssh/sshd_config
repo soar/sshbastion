@@ -6,7 +6,6 @@ LogLevel INFO
 
 PermitRootLogin no
 
-PubkeyAuthentication yes
 AuthorizedKeysFile %h/.ssh/authorized_keys
 
 HostbasedAuthentication no
@@ -27,3 +26,14 @@ TCPKeepAlive yes
 
 # ChrootDirectory /var/chroot
 ForceCommand echo 'This service can be used only as proxy'
+
+{{ if len (default .Env.WHITELIST "") -}}
+PubkeyAuthentication no
+
+{{ range $addr := split (default .Env.WHITELIST "") "," }}
+Match Address "{{ $addr }}"
+    PubkeyAuthentication yes
+{{ end }}
+{{ else }}
+PubkeyAuthentication yes
+{{ end }}

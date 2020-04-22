@@ -27,6 +27,12 @@ JUMPER_USER=jumper
     ```Dockerfile
     FROM quay.io/soar/sshbastion
     ```
+   
+    OR
+    
+    ```Dockerfile
+    FROM soarname/sshbastion
+    ```
     
     `homefs/.ssh/authorized_keys`:
     
@@ -43,7 +49,7 @@ JUMPER_USER=jumper
     ```
 
 3. Test it with commands above    
-4. Deploy it on your infrastructure   
+4. Deploy it on your infrastructure
 
 ### Connecting
 
@@ -105,3 +111,16 @@ For example:
 ```bash
 ssh -o ProxyCommand="ssh -W %h:%p -p 10022 jumper@localhost" targetuser@anotherhost.example.com
 ```
+
+## Environment variables
+
+- `WHITELIST` - comma-separated list of allowed IPs (or ranges in wildcard form) to connect.
+
+    See: `man 5 sshd_config` / `Match` or `Patterns` section
+    
+    Examples:
+    - `192.0.2.1`
+    - `192.0.2.1,192.0.2.2,192.0.2.3`
+    - `192.0.2.*,10.0.0.1`
+    - `192.0.2.0/24,10.0.0.0/24`
+    - `2001:db8::/32`
