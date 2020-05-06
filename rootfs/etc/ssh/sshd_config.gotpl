@@ -1,0 +1,41 @@
+Port {{ default .Env.PORT "10022" }}
+
+HostKey /etc/ssh/ssh_host_rsa_key
+
+LogLevel {{ default .Env.LOG_LEVEL "INFO" }}
+
+PermitRootLogin no
+
+AuthorizedKeysFile %h/.ssh/authorized_keys
+
+HostbasedAuthentication no
+PasswordAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+
+AllowAgentForwarding no
+AllowTcpForwarding local
+GatewayPorts no
+X11Forwarding no
+PermitTTY no
+PermitTunnel yes
+PrintMotd no
+
+UseDNS no
+TCPKeepAlive yes
+
+# ChrootDirectory /var/chroot
+ForceCommand echo 'This service can be used only as proxy'
+
+{{ if len (default .Env.WHITELIST "") -}}
+PubkeyAuthentication no
+AllowUsers {{ range $addr := split (default .Env.WHITELIST "") "," }}{{ $.Env.BASTION_USERNAME }}@{{ $addr }}{{ end }}
+
+{{ range $addr := split .Env.WHITELIST "," }}
+Match Address "{{ $addr }}"
+    PubkeyAuthentication yes
+{{ end }}
+{{ else }}
+PubkeyAuthentication yes
+AllowUsers {{ .Env.BASTION_USERNAME }}
+{{ end }}
