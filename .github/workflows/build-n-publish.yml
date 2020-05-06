@@ -1,0 +1,23 @@
+name: 📦 Build and publish
+on: push
+
+jobs:
+
+  build-n-publish:
+    name: 📦 Build and publish Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@master
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: soar/docker-sshbastion/sshbastion
+          tag_with_ref: true
+          tag_with_sha: true
+          add_git_labels: true
