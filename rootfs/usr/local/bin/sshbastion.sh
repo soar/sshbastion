@@ -18,7 +18,7 @@ for host_key_type in ${HOST_KEY_TYPES}; do
 done
 
 echo "Dockerizing..."
-dockerize -template /etc/ssh/sshd_config:/etc/ssh/sshd_config
+dockerize -template /etc/ssh/sshd_config.gotpl:/etc/ssh/sshd_config
 
 echo "Starting sshd..."
 /usr/sbin/sshd -D -e "$@"

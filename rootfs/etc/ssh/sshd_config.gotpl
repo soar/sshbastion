@@ -1,8 +1,8 @@
-Port 10022
+Port {{ default .Env.PORT "10022" }}
 
 HostKey /etc/ssh/ssh_host_rsa_key
 
-LogLevel INFO
+LogLevel {{ default .Env.LOG_LEVEL "INFO" }}
 
 PermitRootLogin no
 
@@ -29,11 +29,13 @@ ForceCommand echo 'This service can be used only as proxy'
 
 {{ if len (default .Env.WHITELIST "") -}}
 PubkeyAuthentication no
+AllowUsers {{ range $addr := split (default .Env.WHITELIST "") "," }}{{ $.Env.BASTION_USERNAME }}@{{ $addr }}{{ end }}
 
-{{ range $addr := split (default .Env.WHITELIST "") "," }}
+{{ range $addr := split .Env.WHITELIST "," }}
 Match Address "{{ $addr }}"
     PubkeyAuthentication yes
 {{ end }}
 {{ else }}
 PubkeyAuthentication yes
+AllowUsers {{ .Env.BASTION_USERNAME }}
 {{ end }}
