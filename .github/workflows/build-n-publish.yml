@@ -43,9 +43,11 @@ jobs:
 
     steps:
       - name: Syntax checking
+        uses: docker://docker.pkg.github.com/${{ github.repository }}/sshbastion-test:build-${{ github.sha }}-${{ github.run_number }}
         env:
           WHITELIST: ${{ matrix.whitelist }}
-        run: docker run --rm -it docker.pkg.github.com/${{ github.repository }}/sshbastion-test:build-${{ github.sha }}-${{ github.run_number }} -t
+        shell: sh
+        run: sshbastion.sh -t
 
   build-n-publish:
     name: 📦 (Re)Build and publish Docker image
