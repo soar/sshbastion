@@ -24,20 +24,22 @@ JUMPER_USER=jumper
 
     `Dockerfile`:
 
+    from [Quay.io](https://quay.io/repository/soar/sshbastion):
+
     ```Dockerfile
     FROM quay.io/soar/sshbastion:latest
     ```
 
-    OR
+    OR from [GitHub Packages](https://github.com/soar/docker-sshbastion/packages):
 
     ```Dockerfile
     FROM docker.pkg.github.com/soar/docker-sshbastion/sshbastion:latest
     ```
 
-    OR
+    OR from [Docker Hub](https://hub.docker.com/repository/docker/soarname/sshbastion):
 
     ```Dockerfile
-    FROM soarname/sshbastion
+    FROM soarname/sshbastion:latest
     ```
 
     `homefs/.ssh/authorized_keys`:
