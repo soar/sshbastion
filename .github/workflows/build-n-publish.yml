@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Build test image and push it to GitHub Packages
-        uses: docker/build-push-action@master
+        uses: docker/build-push-action@v1
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
