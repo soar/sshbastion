@@ -30,16 +30,10 @@ JUMPER_USER=jumper
     FROM quay.io/soar/sshbastion:latest
     ```
 
-    OR from [GitHub Packages](https://github.com/soar/docker-sshbastion/packages):
+    OR from [GitHub Packages](https://github.com/soar/sshbastion/packages):
 
     ```Dockerfile
-    FROM docker.pkg.github.com/soar/docker-sshbastion/sshbastion:latest
-    ```
-
-    OR from [Docker Hub](https://hub.docker.com/repository/docker/soarname/sshbastion):
-
-    ```Dockerfile
-    FROM soarname/sshbastion:latest
+    FROM docker.pkg.github.com/soar/sshbastion/sshbastion:latest
     ```
 
     `homefs/.ssh/authorized_keys`:
