@@ -29,7 +29,7 @@ ForceCommand echo 'This service can be used only as proxy'
 
 {{ if len (default .Env.WHITELIST "") -}}
 PubkeyAuthentication no
-AllowUsers {{ range $addr := split (default .Env.WHITELIST "") "," }}{{ $.Env.BASTION_USERNAME }}@{{ $addr }}{{ end }}
+AllowUsers {{ range $addr := split (default .Env.WHITELIST "") "," }}{{ $.Env.BASTION_USERNAME }}@{{ $addr }} {{ end }}
 
 {{ range $addr := split .Env.WHITELIST "," }}
 Match Address "{{ $addr }}"
