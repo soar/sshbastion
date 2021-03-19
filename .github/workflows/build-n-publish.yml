@@ -51,6 +51,7 @@ jobs:
         shell: sh
         run: >-
           docker run --rm
+          -e WHITELIST
           docker.pkg.github.com/${{ github.repository }}/sshbastion-test:build-${{ github.sha }}-${{ github.run_number }}
           -t
 
@@ -67,7 +68,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Build and push to GitHub Packages
-        uses: docker/build-push-action@master
+        uses: docker/build-push-action@v1
         with:
           cache_froms: docker.pkg.github.com/${{ github.repository }}/sshbastion-test:build-${{ github.sha }}-${{ github.run_number }}
           username: ${{ github.actor }}

@@ -1,6 +1,6 @@
 # SSH Bastion
 
-[![Docker Repository on Quay](https://quay.io/repository/soar/sshbastion/status "Docker Repository on Quay")](https://quay.io/repository/soar/sshbastion)
+[![📦 Build](https://github.com/soar/sshbastion/actions/workflows/build-n-publish.yml/badge.svg)](https://github.com/soar/sshbastion/actions/workflows/build-n-publish.yml)
 
 ## Usage
 
