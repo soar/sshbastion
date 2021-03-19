@@ -24,14 +24,6 @@ JUMPER_USER=jumper
 
     `Dockerfile`:
 
-    from [Quay.io](https://quay.io/repository/soar/sshbastion):
-
-    ```Dockerfile
-    FROM quay.io/soar/sshbastion:latest
-    ```
-
-    OR from [GitHub Packages](https://github.com/soar/sshbastion/packages):
-
     ```Dockerfile
     FROM docker.pkg.github.com/soar/sshbastion/sshbastion:latest
     ```
