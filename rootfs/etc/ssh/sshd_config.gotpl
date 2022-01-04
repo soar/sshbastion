@@ -1,6 +1,7 @@
 Port {{ default .Env.PORT "10022" }}
 
 HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
 
 LogLevel {{ default .Env.LOG_LEVEL "INFO" }}
 
